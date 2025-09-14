@@ -21,4 +21,9 @@ public class Cell {
     public boolean isEmpty(){
         return this.value == EMPTY;
     }
+
+    @Override
+    public String toString() {
+        return "Cell{value=" + value + ", possibles=" + possibles + "}";
+    }
 }

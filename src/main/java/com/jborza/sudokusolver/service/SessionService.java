@@ -4,6 +4,7 @@ import com.jborza.sudokusolver.model.Puzzle;
 import com.jborza.sudokusolver.model.PuzzleDTO;
 import com.jborza.sudokusolver.model.StepResultDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Map;
 import java.util.UUID;

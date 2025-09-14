@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/sessions")
 public class SessionController {
@@ -26,21 +27,21 @@ public class SessionController {
 
     // Get current puzzle state
     @GetMapping("/{sessionId}")
-    public ResponseEntity<PuzzleDTO> getSession(@PathVariable String sessionId){
+    public ResponseEntity<PuzzleDTO> getSession(@PathVariable("sessionId") String sessionId){
         PuzzleDTO dto = sessions.getPuzzleDTO(sessionId);
         return ResponseEntity.ok(dto);
     }
 
     // Advance one solving step
     @PostMapping("/{sessionId}/step")
-    public ResponseEntity<StepResultDTO> step(@PathVariable String sessionId) {
+    public ResponseEntity<StepResultDTO> step(@PathVariable("sessionId") String sessionId) {
         StepResultDTO result = sessions.step(sessionId);
         return ResponseEntity.ok(result);
     }
 
     // Reset session with new grid
     @PostMapping("/{sessionId}/reset")
-    public ResponseEntity<Void> reset(@PathVariable String sessionId, @Valid @RequestBody PuzzleDTO request) {
+    public ResponseEntity<Void> reset(@PathVariable("sessionId") String sessionId, @Valid @RequestBody PuzzleDTO request) {
         sessions.resetSession(sessionId, request);
         return ResponseEntity.noContent().build();
     }
